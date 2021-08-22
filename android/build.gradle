@@ -40,6 +40,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    aaptOptions {
+      noCompress "tflite"
+    }
 }
 
 repositories {
@@ -55,4 +58,5 @@ repositories {
 dependencies {
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation 'com.google.mlkit:smart-reply:16.2.0'
 }
