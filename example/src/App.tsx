@@ -11,7 +11,7 @@ export default function App() {
       {
         'message': 'Hello',
         'isLocalUser' : false,
-        'userId' : '1'
+        'userId' : '2'
       },
       {
         'message': 'Hi, how are you?',
@@ -21,7 +21,7 @@ export default function App() {
       {
         'message': 'Im fine, what about you?',
         'isLocalUser' : false,
-        'userId' : '1'
+        'userId' : '2'
       }
     ]).then(v=> console.log(v));
   }, []);
