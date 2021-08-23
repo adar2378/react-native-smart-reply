@@ -127,6 +127,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    aaptOptions {
+      noCompress "tflite"
+    }
+
     defaultConfig {
         applicationId "com.example.reactnativesmartreply"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -203,8 +207,9 @@ dependencies {
     } else {
         implementation jscFlavor
     }
-
+    implementation 'com.google.mlkit:smart-reply:16.2.0'
     implementation project(':reactnativesmartreply')
+
 }
 
 // Run this once to be able to run the application with BUCK

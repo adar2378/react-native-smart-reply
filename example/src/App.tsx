@@ -4,15 +4,31 @@ import { StyleSheet, View, Text } from 'react-native';
 import SmartReply from 'react-native-smart-reply';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  // const [result, setResult] = React.useState<Array<String> | undefined>();
 
   React.useEffect(() => {
-    SmartReply.multiply(3, 7).then(setResult);
+    SmartReply.generateSmartReply([
+      {
+        'message': 'Hello',
+        'isLocalUser' : false,
+        'userId' : '1'
+      },
+      {
+        'message': 'Hi, how are you?',
+        'isLocalUser' : true,
+        'userId' : '1'
+      },
+      {
+        'message': 'Im fine, what about you?',
+        'isLocalUser' : false,
+        'userId' : '1'
+      }
+    ]).then(v=> console.log(v));
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text>Result: 0</Text>
     </View>
   );
 }

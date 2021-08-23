@@ -8,6 +8,8 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.WritableArray;
+import com.facebook.react.bridge.WritableNativeArray;
 import com.facebook.react.module.annotations.ReactModule;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -62,7 +64,8 @@ public class SmartReplyModule extends ReactContextBaseJavaModule {
       smartReply.suggestReplies(conversation).addOnSuccessListener(new OnSuccessListener<SmartReplySuggestionResult>() {
         @Override
         public void onSuccess(@NonNull SmartReplySuggestionResult smartReplySuggestionResult) {
-          ArrayList<String> resultTexts = new ArrayList<String>();
+          List<String> resultTexts = new ArrayList<String>();
+          WritableArray writableArray = new WritableNativeArray();
           if (smartReplySuggestionResult.getStatus() == SmartReplySuggestionResult.STATUS_NOT_SUPPORTED_LANGUAGE) {
             // The conversation's language isn't supported, so
             // the result doesn't contain any suggestions.
@@ -73,9 +76,13 @@ public class SmartReplyModule extends ReactContextBaseJavaModule {
             for (SmartReplySuggestion suggestion : smartReplySuggestionResult.getSuggestions()) {
               String replyText = suggestion.getText();
               resultTexts.add(replyText);
+              writableArray.pushString(replyText);
             }
           }
-          promise.resolve(resultTexts);
+
+
+
+          promise.resolve(writableArray);
         }
       }).addOnFailureListener(new OnFailureListener() {
         @Override
