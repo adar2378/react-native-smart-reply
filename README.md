@@ -15,12 +15,12 @@ import SmartReply from "react-native-smart-reply";
 
 // ...
 
-const result = await SmartReply.generateSmartReplies({
+const result = await SmartReply.generateSmartReplies([{
    isLocalUser: true,
    userId: "1",
    timestamp: new Date(),
    message: "HI",
-});
+}]);
 ```
 
 ## Contributing
